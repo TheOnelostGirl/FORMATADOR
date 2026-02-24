@@ -34,7 +34,7 @@ def aplicar_formato_citacao_longa(para, texto):
     run.font.size = Pt(10) # Fonte 10 para citação
 
 # --- Interface ---
-st.set_page_config(page_title="Formatador ABNT 2.0", layout="centered")
+st.set_page_config(page_title="formatador", layout="centered")
 
 st.title(" Formatador ABNT ")
 
@@ -73,7 +73,7 @@ if st.session_state.historico:
     st.download_button(
         label="📥 Baixar Trabalho Completo (.docx)",
         data=buffer,
-        file_name="meu_trabalho_abnt.docx",
+        file_name="texto_formatado.docx",
         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
