@@ -53,12 +53,12 @@ with col_principal:
         """)
         
         # Substitua SEUDDDENUMERO pelo seu número real
-        link_zap = "https://wa.me/55SEUDDDENUMERO?text=Oi%20Nico!%20Fiz%20o%20Pix%20para%20liberar%20o%20VIP."
+        link_zap = "https://wa.me/5591983270175?text=Oi%20Nico!%20Fiz%20o%20Pix%20para%20liberar%20o%20VIP."
         st.link_button("📱 Enviar comprovante no WhatsApp", link_zap)
         
-        senha_digitada = st.text_input("🔑 Digite sua Senha VIP aqui e aperte Enter:")
+        senha_digitada = st.text_input(" Digite sua Senha VIP aqui e aperte Enter:")
         
-        if senha_digitada == "IFPA2026": 
+        if senha_digitada == "EuAmoAABNT2026": 
             st.session_state.is_vip = True
             st.success("Acesso VIP Liberado! Atualize a página.")
             st.rerun()
@@ -99,7 +99,7 @@ with col_principal:
                 st.markdown(f"> {ref}")
 
     elif tipo == "Artigo Científico (Automático via DOI) 🚀":
-        st.subheader("🔬 Busca Automática (Crossref)")
+        st.subheader("🔬 Busca Automática ")
         doi_input = st.text_input("Número do DOI (ex: 10.1038/s41586-020-2649-2)")
 
         if st.button("🔍 Buscar e Gerar ABNT"):
