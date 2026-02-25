@@ -8,7 +8,7 @@ import io
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Formatador da Nico", layout="centered", page_icon="🎓")
 
-# --- FUNÇÕES TÉCNICAS (Motor ABNT) ---
+# --- FUNÇÕES TÉCNICAS ---
 def configurar_margens(doc):
     for section in doc.sections:
         section.top_margin = Cm(3)
@@ -38,44 +38,40 @@ def aplicar_formato_citacao_longa(para, texto):
     run.font.name = 'Arial'
     run.font.size = Pt(10)
 
-# --- SIDEBAR: ESTRUTURA PROFISSIONAL ---
+# --- SIDEBAR: APOIO E META DO NOTEBOOK ---
 with st.sidebar:
-    st.header("🎓 Apoie o Projeto")
+    st.header("🎓 Apoie uma Engenheira")
     
-    st.markdown(""
-   Sou a **Nico**, 25 anos, futura Engenheira de Controle e Automação pelo **IFPA** (9º semestre). Desenvolvi este formatador para devolver o tempo que a burocracia da ABNT rouba de nós.
-
+    # INDENTAÇÃO CORRIGIDA: Agora o texto aparece dentro da barra lateral
+    st.markdown(f"""
+    ### 🛠️ Apoie uma Engenheira em Formação!
     
-
+    Sou a **Nico**, 25 anos, futura Engenheira de Controle e Automação pelo **IFPA** (9º semestre). Desenvolvi este formatador para devolver o tempo que a burocracia da ABNT rouba de nós.
+    
     **Por que o seu apoio é imprescindível hoje?**
-
     Na Engenharia, a inovação não acontece sentada em uma mesa. Ela acontece no laboratório, na bancada de robótica e no campo. Atualmente, meu desenvolvimento está "preso" a um PC fixo, o que é um gargalo crítico na minha reta final de curso.
-
     
-
     Ter um notebook funcional não é um luxo, é a **condição básica** para eu levar meus códigos para o laboratório e entregar meu TCC. 
-
     
-
     Ao apoiar, você não está apenas fazendo uma doação; você está **investindo no futuro da tecnologia nacional** e ajudando uma estudante a cruzar a linha de chegada.
+    
+    **Vamos juntos transformar esse projeto em carreira?** 🚀
+    """)
 
     # --- BARRA DE PROGRESSO ---
     valor_meta = 3500.00
-    valor_atual = 0.00  # Atualize este valor manualmente conforme receber apoios
+    valor_atual = 0.00 
     progresso = min(valor_atual / valor_meta, 1.0)
     
     st.write(f"**Meta Notebook: R$ {valor_atual:.2f} / R$ {valor_meta:.2f}**")
     st.progress(progresso)
     
-    st.divider()
-
-    # --- QR CODE E LEGENDA DIRETA ---
+    # Adicionando o QR Code
     try:
-        st.image("qrcode.png")
         st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕")
     except:
-        st.error("⚠️ QR Code (qrcode.png) não encontrado na pasta.")
-
+        st.caption("(QR Code não carregado - verifique o nome do arquivo qrcode.png)")
+    
     st.divider()
 
     # --- LISTA DE APOIADORES ---
@@ -86,13 +82,13 @@ with st.sidebar:
         for index, row in df.tail(5).iterrows():
             st.write(f"⭐ {row['Nome']}")
     except:
-        st.write("🙏 Apoiadores: Aguardando primeiro aporte.")
+        st.write("🙏 Apoiadores: ")
 
 # --- INTERFACE PRINCIPAL ---
-st.title("🚀 Formatador ABNT")
+st.title(" Formatador ABNT")
 st.write("Facilitando a vida do estudante, um parágrafo por vez.")
 
-tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 linhas)"])
+tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 lines)"])
 texto_input = st.text_area("Cole seu texto aqui:", height=200)
 
 if 'documento' not in st.session_state:
@@ -102,35 +98,4 @@ if 'documento' not in st.session_state:
 
 if st.button("Adicionar ao Documento"):
     if texto_input.strip():
-        p = st.session_state.documento.add_paragraph()
-        if tipo_texto == "Texto Comum (Parágrafos)":
-            aplicar_formato_corpo(p, texto_input)
-        else:
-            aplicar_formato_citacao_longa(p, texto_input)
-        
-        st.session_state.historico.append(tipo_texto)
-        st.success("Adicionado com sucesso!")
-    else:
-        st.warning("Cole o texto antes de processar.")
-
-st.divider()
-
-if st.session_state.historico:
-    st.write(f"📝 Itens no documento: {len(st.session_state.historico)}")
-    
-    buffer = io.BytesIO()
-    st.session_state.documento.save(buffer)
-    buffer.seek(0)
-    
-    st.download_button(
-        label="📥 Baixar Trabalho Completo (.docx)",
-        data=buffer,
-        file_name="trabalho_formatado_nico.docx",
-        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    )
-
-    if st.button("🗑️ Limpar tudo e recomeçar"):
-        st.session_state.documento = Document()
-        configurar_margens(st.session_state.documento)
-        st.session_state.historico = []
-        st.rerun()
+        p = st.session_state.documento
