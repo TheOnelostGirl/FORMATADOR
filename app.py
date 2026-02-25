@@ -61,7 +61,7 @@ with st.sidebar:
     
     st.divider()
 
-    # 3. TEXTO DE EXPLICAÇÃO (MANTIDO EXATAMENTE COMO VOCÊ PEDIU)
+    # 3. TEXTO DE EXPLICAÇÃO
     st.markdown("""
     ### 🛠️ Apoie uma Engenheira em Formação!
     
@@ -91,4 +91,49 @@ with st.sidebar:
 
 # --- INTERFACE PRINCIPAL ---
 st.title("🚀 Formatador ABNT")
-st.write("Facilitando a vida do estudante, um parágrafo por vez
+st.write("Facilitando a vida do estudante, um parágrafo por vez.")
+
+tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 linhas)"])
+texto_input = st.text_area("Cole seu texto aqui:", height=200)
+
+if 'documento' not in st.session_state:
+    st.session_state.documento = Document()
+    configurar_margens(st.session_state.documento)
+    st.session_state.historico = []
+
+# Botão de Adicionar
+if st.button("Adicionar ao Documento"):
+    if texto_input.strip():
+        p = st.session_state.documento.add_paragraph()
+        if tipo_texto == "Texto Comum (Parágrafos)":
+            aplicar_formato_corpo(p, texto_input)
+        else:
+            aplicar_formato_citacao_longa(p, texto_input)
+        
+        st.session_state.historico.append(tipo_texto)
+        st.success("Adicionado com sucesso!")
+    else:
+        st.warning("Opa! Cole o texto antes de clicar.")
+
+st.divider()
+
+# Parte de Download
+if st.session_state.historico:
+    st.write(f"📝 Itens já formatados: {len(st.session_state.historico)}")
+    
+    buffer = io.BytesIO()
+    st.session_state.documento.save(buffer)
+    buffer.seek(0)
+    
+    st.download_button(
+        label="📥 Baixar Trabalho Completo (.docx)",
+        data=buffer,
+        file_name="trabalho_formatado_nico.docx",
+        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
+
+    if st.button("🗑️ Limpar tudo e recomeçar"):
+        st.session_state.documento = Document()
+        configurar_margens(st.session_state.documento)
+        st.session_state.historico = []
+        st.rerun()
