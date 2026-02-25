@@ -38,10 +38,6 @@ def aplicar_formato_citacao_longa(para, texto):
     run.font.name = 'Arial'
     run.font.size = Pt(10)
 
-# --- SIDEBAR: APOIO E META DO NOTEBOOK ---
-with st.sidebar:
-    st.header("🎓 Apoie uma Engenheira")
-    
     # INDENTAÇÃO CORRIGIDA: Agora o texto aparece dentro da barra lateral
     st.markdown(f"""
     ### 🛠️ Apoie uma Engenheira em Formação!
@@ -58,14 +54,7 @@ with st.sidebar:
     **Vamos juntos transformar esse projeto em carreira?** 🚀
     """)
 
-    # --- BARRA DE PROGRESSO ---
-    valor_meta = 3500.00
-    valor_atual = 0.00 
-    progresso = min(valor_atual / valor_meta, 1.0)
-    
-    st.write(f"**Meta Notebook: R$ {valor_atual:.2f} / R$ {valor_meta:.2f}**")
-    st.progress(progresso)
-    
+
     # Adicionando o QR Code
     try:
         st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕")
@@ -75,14 +64,14 @@ with st.sidebar:
     st.divider()
 
     # --- LISTA DE APOIADORES ---
-    st.subheader("✨ Apoiadores")
+    st.subheader("✨")
     try:
         url_planilha = "COLE_AQUI_O_LINK_DO_CSV" 
         df = pd.read_csv(url_planilha)
         for index, row in df.tail(5).iterrows():
             st.write(f"⭐ {row['Nome']}")
     except:
-        st.write("🙏 Apoiadores: ")
+        st.write("Apoiadores: ")
 
 # --- INTERFACE PRINCIPAL ---
 st.title(" Formatador ABNT")
