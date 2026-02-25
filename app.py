@@ -42,12 +42,19 @@ def aplicar_formato_citacao_longa(para, texto):
 with st.sidebar:
     st.header("🎓 Apoie uma Engenheira")
     
-    st.markdown(f"""
-    Oi! Eu sou a **Nico**, tenho 25 anos e estou no **9º semestre de Engenharia no IFPA**. 
+st.markdown(f"""
+    ### 🛠️ Apoie uma Engenheira em Formação!
     
-    Criei esse app porque cansei de brigar com a ABNT no meu TCC. Hoje, eu programo em um PC fixo porque meu notebook está com a **tela toda quebrada**. 
+    Sou a **Nico**, 25 anos, futura Engenheira de Controle e Automação pelo **IFPA** (9º semestre). Desenvolvi este formatador para devolver o tempo que a burocracia da ABNT rouba de nós.
     
-    Minha meta é um notebook novo para levar meus projetos de robótica para o laboratório! 💻⚡
+    **Por que o seu apoio é imprescindível hoje?**
+    Na Engenharia, a inovação não acontece sentada em uma mesa. Ela acontece no laboratório, na bancada de robótica e no campo. Atualmente, meu desenvolvimento está "preso" a um PC fixo, o que é um gargalo crítico na minha reta final de curso.
+    
+    Ter um notebook funcional não é um luxo, é a **condição básica** para eu levar meus códigos para o laboratório e entregar meu TCC. 
+    
+    Ao apoiar, você não está apenas fazendo uma doação; você está **investindo no futuro da tecnologia nacional** e ajudando uma estudante a cruzar a linha de chegada.
+    
+    **Vamos juntos transformar esse projeto em carreira?** 🚀
     """)
 
     # --- BARRA DE PROGRESSO ---
