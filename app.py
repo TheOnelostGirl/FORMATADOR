@@ -59,14 +59,12 @@ st.markdown(f"""
 
     # --- BARRA DE PROGRESSO ---
     valor_meta = 3500.00
-    valor_atual = 150.00 
+    valor_atual = 0.00 
     progresso = min(valor_atual / valor_meta, 1.0)
     
     st.write(f"**Meta Notebook: R$ {valor_atual:.2f} / R$ {valor_meta:.2f}**")
     st.progress(progresso)
     
-    # --- DADOS DE PAGAMENTO E QR CODE ---
-    st.info("🔑 **Chave Pix (E-mail ou PicPay):** seu-email@exemplo.com")
     
     # Adicionando o QR Code que você já colocou na pasta
     try:
@@ -74,7 +72,7 @@ st.markdown(f"""
     except:
         st.caption("(QR Code não carregado - verifique o nome do arquivo qrcode.png)")
 
-    st.caption("Qualquer valor ajuda nos meus exames de saúde e no notebook! 🙏")
+    st.caption()
     
     st.divider()
 
@@ -86,10 +84,10 @@ st.markdown(f"""
         for index, row in df.tail(5).iterrows():
             st.write(f"⭐ {row['Nome']}")
     except:
-        st.write("🙏 Apoiadores: Namorada ❤️, Marcos S.")
+        st.write("🙏 Apoiadores: ")
 
 # --- INTERFACE PRINCIPAL ---
-st.title("🚀 Formatador ABNT Inteligente")
+st.title(" Formatador ABNT")
 st.write("Facilitando a vida do estudante, um parágrafo por vez.")
 
 tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 lines)"])
