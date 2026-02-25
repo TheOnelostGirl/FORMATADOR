@@ -48,18 +48,7 @@ with st.sidebar:
         st.caption("✨ Invista na infraestrutura técnica e saúde visual da futura engenheira.")
     except:
         st.error("⚠️ QR Code (qrcode.png) não encontrado.")
-    
-    st.info("🔑 Chave Pix: seu-email@exemplo.com")
 
-    # 2. BARRA DE PROGRESSO
-    valor_meta = 3500.00
-    valor_atual = 0.00  
-    progresso = min(valor_atual / valor_meta, 1.0)
-    
-    st.write(f"**Meta Notebook: R$ {valor_atual:.2f} / R$ {valor_meta:.2f}**")
-    st.progress(progresso)
-    
-    st.divider()
 
     # 3. TEXTO DE EXPLICAÇÃO
     st.markdown("""
@@ -87,11 +76,11 @@ with st.sidebar:
         for index, row in df.tail(5).iterrows():
             st.write(f"⭐ {row['Nome']}")
     except:
-        st.write("🙏 Apoiadores: Namorada ❤️")
+        st.write("🙏 Apoiadores:")
 
 # --- INTERFACE PRINCIPAL ---
 st.title("🚀 Formatador ABNT")
-st.write("Facilitando a vida do estudante, um parágrafo por vez.")
+st.write("Facilitando a vida do estudante, um parágrafo de cada vez.")
 
 tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 linhas)"])
 texto_input = st.text_area("Cole seu texto aqui:", height=200)
