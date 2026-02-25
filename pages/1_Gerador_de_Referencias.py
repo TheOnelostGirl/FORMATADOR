@@ -22,13 +22,10 @@ with col_apoio:
     
     try:
         # Certifique-se de que o arquivo qrcode.png está na pasta principal do projeto
-        st.image("qrcode.png", caption="✨ Invista na infraestrutura técnica da futura engenheira.")
+        st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕")
     except:
         st.info("Espaço para o QR Code (qrcode.png)")
-    
-    st.success("🔑 Chave Pix: seu-email@exemplo.com")
-    st.divider()
-
+  
     st.markdown("""
     ### 🛠️ Apoie uma Engenheira em Formação!
     
