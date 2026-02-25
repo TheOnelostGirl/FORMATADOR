@@ -45,7 +45,7 @@ with st.sidebar:
     # 1. QR CODE NO TOPO
     try:
         st.image("qrcode.png")
-        st.caption("✨ Invista na infraestrutura técnica e saúde visual da futura engenheira.")
+        st.caption("✨ Apoie-me.")
     except:
         st.error("⚠️ QR Code (qrcode.png) não encontrado.")
 
