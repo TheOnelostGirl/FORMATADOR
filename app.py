@@ -5,10 +5,10 @@ from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import io
 
-# --- CONFIGURAÇÃO DA PÁGINA (Sempre o primeiro comando Streamlit) ---
+# --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Formatador da Nico", layout="centered", page_icon="🎓")
 
-# --- FUNÇÕES TÉCNICAS (O "Motor" do app) ---
+# --- FUNÇÕES TÉCNICAS ---
 def configurar_margens(doc):
     for section in doc.sections:
         section.top_margin = Cm(3)
@@ -45,21 +45,28 @@ with st.sidebar:
     st.markdown(f"""
     Oi! Eu sou a **Nico**, tenho 25 anos e estou no **9º semestre de Engenharia no IFPA**. 
     
-    Criei esse app porque cansei de brigar com a ABNT no meu TCC. Hoje, eu programo em um PC fixo porque meu notebook está com a **tela toda quebrada** (conforme mostrei no vídeo!). 
+    Criei esse app porque cansei de brigar com a ABNT no meu TCC. Hoje, eu programo em um PC fixo porque meu notebook está com a **tela toda quebrada**. 
     
-    Minha meta é um notebook novo para levar meus projetos de robótica para o laboratório e finalizar o curso! 💻⚡
+    Minha meta é um notebook novo para levar meus projetos de robótica para o laboratório! 💻⚡
     """)
 
     # --- BARRA DE PROGRESSO ---
     valor_meta = 3500.00
-    valor_atual = 150.00 # <--- ATUALIZE MANUALMENTE AQUI QUANDO RECEBER PIX
+    valor_atual = 150.00 
     progresso = min(valor_atual / valor_meta, 1.0)
     
     st.write(f"**Meta Notebook: R$ {valor_atual:.2f} / R$ {valor_meta:.2f}**")
     st.progress(progresso)
     
-    # --- DADOS DE PAGAMENTO ---
+    # --- DADOS DE PAGAMENTO E QR CODE ---
     st.info("🔑 **Chave Pix (E-mail ou PicPay):** seu-email@exemplo.com")
+    
+    # Adicionando o QR Code que você já colocou na pasta
+    try:
+        st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕")
+    except:
+        st.caption("(QR Code não carregado - verifique o nome do arquivo qrcode.png)")
+
     st.caption("Qualquer valor ajuda nos meus exames de saúde e no notebook! 🙏")
     
     st.divider()
@@ -67,28 +74,25 @@ with st.sidebar:
     # --- LISTA DE APOIADORES ---
     st.subheader("✨ Apoiadores")
     try:
-        # Quando tiver o link do CSV da planilha, cole aqui:
         url_planilha = "COLE_AQUI_O_LINK_DO_CSV" 
         df = pd.read_csv(url_planilha)
         for index, row in df.tail(5).iterrows():
             st.write(f"⭐ {row['Nome']}")
     except:
-        st.write("🙏 Apoiadores: Namorada ❤️, Marcos S.") # Coloquei uns nomes de exemplo
+        st.write("🙏 Apoiadores: Namorada ❤️, Marcos S.")
 
 # --- INTERFACE PRINCIPAL ---
 st.title("🚀 Formatador ABNT Inteligente")
 st.write("Facilitando a vida do estudante, um parágrafo por vez.")
 
-tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 linhas)"])
+tipo_texto = st.radio("O que você vai colar agora?", ["Texto Comum (Parágrafos)", "Citação Longa (Mais de 3 lines)"])
 texto_input = st.text_area("Cole seu texto aqui:", height=200)
 
-# Inicialização do documento no session_state
 if 'documento' not in st.session_state:
     st.session_state.documento = Document()
     configurar_margens(st.session_state.documento)
     st.session_state.historico = []
 
-# Botão de Adicionar
 if st.button("Adicionar ao Documento"):
     if texto_input.strip():
         p = st.session_state.documento.add_paragraph()
@@ -104,7 +108,6 @@ if st.button("Adicionar ao Documento"):
 
 st.divider()
 
-# Parte de Download
 if st.session_state.historico:
     st.write(f"📝 Itens já formatados: {len(st.session_state.historico)}")
     
@@ -123,5 +126,4 @@ if st.session_state.historico:
         st.session_state.documento = Document()
         configurar_margens(st.session_state.documento)
         st.session_state.historico = []
-        st.rerun() = []
-        st.rerun()
+        st.rerun() # <--- Corrigido aqui!
