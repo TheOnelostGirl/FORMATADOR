@@ -6,7 +6,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 import io
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="FAmo a ABNT", layout="wide", page_icon="🎓")
+st.set_page_config(page_title="<3 ABNT", layout="wide", page_icon="🎓")
 
 # --- FUNÇÕES TÉCNICAS ---
 def configurar_margens(doc):
