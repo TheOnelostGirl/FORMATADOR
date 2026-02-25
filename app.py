@@ -42,7 +42,7 @@ def aplicar_formato_citacao_longa(para, texto):
 with st.sidebar:
     st.header("🎓 Apoie o Projeto")
     
-    st.markdown("""
+    st.markdown(""
    Sou a **Nico**, 25 anos, futura Engenheira de Controle e Automação pelo **IFPA** (9º semestre). Desenvolvi este formatador para devolver o tempo que a burocracia da ABNT rouba de nós.
 
     
