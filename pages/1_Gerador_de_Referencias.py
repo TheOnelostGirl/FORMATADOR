@@ -22,7 +22,7 @@ with col_apoio:
     
     try:
         # Certifique-se de que o arquivo qrcode.png está na pasta principal do projeto
-        st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕")
+        st.image("qrcode.png", caption="Escaneie para apoiar a Nico ou envie um pix para 91983270175! ☕")
     except:
         st.info("Espaço para o QR Code (qrcode.png)")
   
@@ -46,7 +46,7 @@ with col_principal:
     if st.session_state.contador_ref >= 5 and not st.session_state.is_vip:
         st.error("🛑 Limite de 5 referências gratuitas atingido!")
         st.markdown("""
-        **Gostou da ferramenta?** Para liberar o uso ilimitado e apoiar o desenvolvimento do projeto, faça um Pix de **R$ 5,00** (QR Code na lateral). 
+        **Gostou da ferramenta?** Para liberar o uso ilimitado e apoiar o desenvolvimento do projeto, faça um Pix de **R$ 5,00** (91983270175 ou QR Code na lateral). 
         """)
         
         # Substitua SEUDDDENUMERO pelo seu número real
