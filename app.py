@@ -101,7 +101,7 @@ with col_apoio:
     
     # 1. QR CODE NO TOPO
     try:
-        st.image("qrcode.png", caption="Escaneie para apoiar a Nico! ☕.")
+        st.image("qrcode.png", caption="Escaneie para apoiar a Nico ou envie por Pix para 91983270175! ☕.")
     except:
         st.info("Espaço para o QR Code (qrcode.png)")
     
